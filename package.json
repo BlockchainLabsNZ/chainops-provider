@@ -1,20 +1,20 @@
 {
-  "name": "webapp-boilerplate",
+  "name": "chainops-provider",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "jest",
-    "dev": "npm run dev:client & npm run dev:server",
-    "dev:client": "webpack-dev-server --config ./webpack.client.config.js --mode=development",
-    "dev:server": "webpack --config ./webpack.server.config.js --watch --mode=development",
-    "build:client": "webpack --config ./webpack.client.config.js --mode=production",
-    "build:server": "webpack --config ./webpack.server.config.js --mode=production",
-    "build": "npm run build:client && npm run build:server"
+    "build": "tsc"
   },
+  "files": [
+    "dist/*"
+  ],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/qs": "^6.5.3",
     "@types/react": "^16.4.18",
     "@types/react-dom": "^16.0.9",
     "awesome-typescript-loader": "^5.2.1",
@@ -27,9 +27,12 @@
     "webpack-dev-server": "^3.1.14"
   },
   "dependencies": {
+    "axios": "^0.19.0",
     "env-var": "^3.4.1",
+    "qs": "^6.7.0",
     "react": "^16.6.0",
-    "react-dom": "^16.6.0"
+    "react-dom": "^16.6.0",
+    "web3": "^1.0.0-beta.55"
   },
   "prettier": {
     "semi": false,
