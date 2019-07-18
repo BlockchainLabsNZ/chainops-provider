@@ -31,7 +31,7 @@ export class ProviderRouter {
           ? await provider[methodName].apply(provider, args)
           : await provider[methodName]()
 
-        console.log('Returning from', order[i], '...')
+        // console.log('Returning from', order[i], '...')
         return result
       } catch (err) {
         console.error('Error using', order[i], 'moving to next provider', err)

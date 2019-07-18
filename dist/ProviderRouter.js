@@ -21,7 +21,7 @@ class ProviderRouter {
                     const result = args
                         ? yield provider[methodName].apply(provider, args)
                         : yield provider[methodName]();
-                    console.log('Returning from', order[i], '...');
+                    // console.log('Returning from', order[i], '...')
                     return result;
                 }
                 catch (err) {

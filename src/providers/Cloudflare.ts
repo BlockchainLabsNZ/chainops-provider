@@ -28,8 +28,6 @@ export class Cloudflare implements IProvider {
       id: 64
     })
 
-    console.log(response)
-
     return response.data.result
   }
 

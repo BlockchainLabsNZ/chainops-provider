@@ -33,7 +33,6 @@ class Cloudflare {
                 params: [web3_utils_1.toHex(block), true],
                 id: 64
             });
-            console.log(response);
             return response.data.result;
         });
     }
