@@ -28,6 +28,8 @@ export class Cloudflare implements IProvider {
       id: 64
     })
 
+    if (!response.data.result)
+      throw new Error('Cloudflare getBlock: ' + block + ' - falsey')
     return response.data.result
   }
 
