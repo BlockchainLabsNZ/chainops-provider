@@ -1,7 +1,8 @@
 import { IProvider } from './IProvider';
 export declare class Cloudflare implements IProvider {
     base: string;
-    constructor(key: string);
+    nextRequestId: number;
+    constructor();
     getBlockNumber(): Promise<number>;
     getBlock(block: number): Promise<any>;
     getTransaction(txHash: string): Promise<any>;

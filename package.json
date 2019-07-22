@@ -27,8 +27,12 @@
     "webpack-dev-server": "^3.1.14"
   },
   "dependencies": {
+    "@ethercast/model": "^3.0.2",
     "axios": "^0.19.0",
+    "bignumber.js": "^9.0.0",
+    "cross-fetch": "^3.0.4",
     "env-var": "^3.4.1",
+    "isomorphic-ws": "^4.0.1",
     "qs": "^6.7.0",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",

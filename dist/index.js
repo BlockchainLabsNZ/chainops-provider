@@ -8,3 +8,5 @@ const Web3_1 = require("./providers/Web3");
 exports.WebThree = Web3_1.WebThree;
 const Cloudflare_1 = require("./providers/Cloudflare");
 exports.Cloudflare = Cloudflare_1.Cloudflare;
+const JsonRpc_1 = require("./providers/JsonRpc");
+exports.JsonRpc = JsonRpc_1.JsonRpc;

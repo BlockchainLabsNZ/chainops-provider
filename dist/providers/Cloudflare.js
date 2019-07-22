@@ -11,8 +11,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const request_1 = require("../request");
 const web3_utils_1 = require("web3-utils");
 class Cloudflare {
-    constructor(key) {
+    constructor() {
         this.base = 'https://cloudflare-eth.com';
+        this.nextRequestId = 0;
     }
     getBlockNumber() {
         return __awaiter(this, void 0, void 0, function* () {
@@ -20,7 +21,7 @@ class Cloudflare {
                 jsonrpc: '2.0',
                 method: 'eth_blockNumber',
                 params: [],
-                id: 64
+                id: this.nextRequestId++
             });
             return web3_utils_1.toBN(response.data.result).toNumber();
         });
@@ -31,7 +32,7 @@ class Cloudflare {
                 jsonrpc: '2.0',
                 method: 'eth_getBlockByNumber',
                 params: [web3_utils_1.toHex(block), true],
-                id: 64
+                id: this.nextRequestId++
             });
             if (!response.data.result)
                 throw new Error('Cloudflare getBlock: ' + block + ' - falsey');
@@ -44,7 +45,7 @@ class Cloudflare {
                 jsonrpc: '2.0',
                 method: 'eth_getTransactionByHash',
                 params: [txHash],
-                id: 64
+                id: this.nextRequestId++
             });
             return response.data.result;
         });
@@ -55,7 +56,7 @@ class Cloudflare {
                 jsonrpc: '2.0',
                 method: 'eth_getTransactionReceipt',
                 params: [txHash],
-                id: 64
+                id: this.nextRequestId++
             });
             return response.data.result;
         });

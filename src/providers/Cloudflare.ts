@@ -4,9 +4,11 @@ import { toBN, toHex } from 'web3-utils'
 
 export class Cloudflare implements IProvider {
   base: string
+  nextRequestId: number
 
-  constructor(key: string) {
+  constructor() {
     this.base = 'https://cloudflare-eth.com'
+    this.nextRequestId = 0
   }
 
   async getBlockNumber() {
@@ -14,7 +16,7 @@ export class Cloudflare implements IProvider {
       jsonrpc: '2.0',
       method: 'eth_blockNumber',
       params: [],
-      id: 64
+      id: this.nextRequestId++
     })
 
     return toBN(response.data.result).toNumber()
@@ -25,7 +27,7 @@ export class Cloudflare implements IProvider {
       jsonrpc: '2.0',
       method: 'eth_getBlockByNumber',
       params: [toHex(block), true],
-      id: 64
+      id: this.nextRequestId++
     })
 
     if (!response.data.result)
@@ -38,7 +40,7 @@ export class Cloudflare implements IProvider {
       jsonrpc: '2.0',
       method: 'eth_getTransactionByHash',
       params: [txHash],
-      id: 64
+      id: this.nextRequestId++
     })
 
     return response.data.result
@@ -49,7 +51,7 @@ export class Cloudflare implements IProvider {
       jsonrpc: '2.0',
       method: 'eth_getTransactionReceipt',
       params: [txHash],
-      id: 64
+      id: this.nextRequestId++
     })
 
     return response.data.result

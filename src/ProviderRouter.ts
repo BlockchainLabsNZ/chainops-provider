@@ -34,10 +34,12 @@ export class ProviderRouter {
         // console.log('Returning from', order[i], '...')
         return result
       } catch (err) {
-        console.error('Error using', order[i], 'moving to next provider', err)
         if (i === order.length - 1) {
+          console.error('Error using', order[i], 'no more providers', err)
           //hit the limit of all the providers
           throw err
+        } else {
+          console.error('Error using', order[i], 'moving to next provider', err)
         }
       }
     }
