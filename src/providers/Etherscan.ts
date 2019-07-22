@@ -37,7 +37,7 @@ export class Etherscan implements IProvider {
     )
 
     if (!response.data.result)
-      throw new Error('Etherscan getBlock: ' + block + ' - falsey')
+      throw new Error('Etherscan getBlock: ' + number + ' - falsey')
 
     return response.data.result
   }

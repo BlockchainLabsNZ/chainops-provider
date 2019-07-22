@@ -33,6 +33,8 @@ class Cloudflare {
                 params: [web3_utils_1.toHex(block), true],
                 id: 64
             });
+            if (!response.data.result)
+                throw new Error('Cloudflare getBlock: ' + block + ' - falsey');
             return response.data.result;
         });
     }

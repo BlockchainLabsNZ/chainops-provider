@@ -37,6 +37,8 @@ class Etherscan {
                 tag: web3_utils_1.toHex(number),
                 apiKey: this.key
             }, null);
+            if (!response.data.result)
+                throw new Error('Etherscan getBlock: ' + number + ' - falsey');
             return response.data.result;
         });
     }
