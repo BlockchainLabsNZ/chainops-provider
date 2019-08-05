@@ -11,6 +11,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 class ProviderRouter {
     constructor(options) {
         this.configuration = options;
+        this.stats = {};
+    }
+    incrementStats(provider, method, priority) {
+        this.stats[provider] = this.stats[provider] || {};
+        this.stats[provider][method] = this.stats[provider][method] || {};
+        this.stats[provider][method][priority] =
+            this.stats[provider][method][priority] || 0;
+        this.stats[provider][method][priority]++;
     }
     runMethod(methodName, ...args) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -21,7 +29,7 @@ class ProviderRouter {
                     const result = args
                         ? yield provider[methodName].apply(provider, args)
                         : yield provider[methodName]();
-                    // console.log('Returning from', order[i], '...')
+                    this.incrementStats(order[i], methodName, i);
                     return result;
                 }
                 catch (err) {

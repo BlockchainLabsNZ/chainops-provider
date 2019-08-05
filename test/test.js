@@ -7,10 +7,10 @@ const {
 } = require('../dist/index')
 
 async function main() {
-  const Web3 = require('web3')
-  const web3 = new Web3(
-    'wss://mainnet.infura.io/ws/v3/4fe6f23c0b4d468ebf02a2d3142b0e10'
-  )
+  // const Web3 = require('web3')
+  // const web3 = new Web3(
+  //   'wss://mainnet.infura.io/ws/v3/4fe6f23c0b4d468ebf02a2d3142b0e10'
+  // )
 
   const jsonrpc = new JsonRpc(
     'wss://mainnet.infura.io/ws/v3/4fe6f23c0b4d468ebf02a2d3142b0e10'
@@ -18,9 +18,9 @@ async function main() {
 
   await jsonrpc.init()
 
-  const infura = new WebThree(web3)
-  const etherscan = new Etherscan('YourApiKeyToken')
-  const cloudflare = new Cloudflare()
+  // const infura = new WebThree(web3)
+  // const etherscan = new Etherscan('YourApiKeyToken')
+  // const cloudflare = new Cloudflare()
 
   const config = {
     routing: {
@@ -35,9 +35,9 @@ async function main() {
       // getTransactionReceipt: ['jsonrpc', 'cloudflare', 'etherscan', 'infura']
     },
     providers: {
-      infura: infura,
-      etherscan: etherscan,
-      cloudflare: cloudflare,
+      // infura: infura,
+      // etherscan: etherscan,
+      // cloudflare: cloudflare,
       jsonrpc: jsonrpc
     }
   }
@@ -56,7 +56,7 @@ async function main() {
     )
   )
 
-  console.log(await router.nothing())
+  console.log(router.stats)
 }
 
 main()

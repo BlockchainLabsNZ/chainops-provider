@@ -17,8 +17,24 @@ type SupportedMethods =
 
 export class ProviderRouter {
   configuration: any
+  stats: {
+    [provider: string]: {
+      [methodName: string]: {
+        [priority: number]: number
+      }
+    }
+  }
   constructor(options: IOptions) {
     this.configuration = options
+    this.stats = {}
+  }
+
+  incrementStats(provider: string, method: string, priority: number) {
+    this.stats[provider] = this.stats[provider] || {}
+    this.stats[provider][method] = this.stats[provider][method] || {}
+    this.stats[provider][method][priority] =
+      this.stats[provider][method][priority] || 0
+    this.stats[provider][method][priority]++
   }
 
   async runMethod(methodName: SupportedMethods, ...args: any) {
@@ -31,7 +47,7 @@ export class ProviderRouter {
           ? await provider[methodName].apply(provider, args)
           : await provider[methodName]()
 
-        // console.log('Returning from', order[i], '...')
+        this.incrementStats(order[i], methodName, i)
         return result
       } catch (err) {
         if (i === order.length - 1) {
