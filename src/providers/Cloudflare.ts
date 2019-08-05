@@ -22,6 +22,10 @@ export class Cloudflare implements IProvider {
     return toBN(response.data.result).toNumber()
   }
 
+  async getErc20Balance(contract: string, address: string): Promise<number> {
+    throw new Error('getErc20Balance is not supported with Cloudflare')
+  }
+
   async getBlock(block: number) {
     const response = await this.makeRequest({
       jsonrpc: '2.0',

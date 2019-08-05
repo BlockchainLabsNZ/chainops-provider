@@ -43,6 +43,11 @@ class JsonRpc {
             return result;
         });
     }
+    getErc20Balance(contract, address) {
+        return __awaiter(this, void 0, void 0, function* () {
+            throw new Error('getErc20Balance is not supported with JsonRpc');
+        });
+    }
     getTransaction(txHash) {
         return __awaiter(this, void 0, void 0, function* () {
             if (!this.client)

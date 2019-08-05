@@ -14,6 +14,7 @@ type SupportedMethods =
   | 'getTransaction'
   | 'getTransactionReceipt'
   | 'getBlock'
+  | 'getErc20Balance'
 
 export class ProviderRouter {
   configuration: any
@@ -75,5 +76,9 @@ export class ProviderRouter {
 
   async getTransactionReceipt(txHash: string) {
     return this.runMethod('getTransactionReceipt', txHash)
+  }
+
+  async getErc20Balance(contract: string, address: string) {
+    return this.runMethod('getErc20Balance', contract, address)
   }
 }

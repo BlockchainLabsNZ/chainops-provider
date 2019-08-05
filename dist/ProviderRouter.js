@@ -65,5 +65,10 @@ class ProviderRouter {
             return this.runMethod('getTransactionReceipt', txHash);
         });
     }
+    getErc20Balance(contract, address) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.runMethod('getErc20Balance', contract, address);
+        });
+    }
 }
 exports.ProviderRouter = ProviderRouter;

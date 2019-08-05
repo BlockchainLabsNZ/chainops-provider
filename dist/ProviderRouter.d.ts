@@ -7,7 +7,7 @@ interface IOptions {
         [name: string]: IProvider;
     };
 }
-declare type SupportedMethods = 'getBlockNumber' | 'getTransaction' | 'getTransactionReceipt' | 'getBlock';
+declare type SupportedMethods = 'getBlockNumber' | 'getTransaction' | 'getTransactionReceipt' | 'getBlock' | 'getErc20Balance';
 export declare class ProviderRouter {
     configuration: any;
     stats: {
@@ -24,5 +24,6 @@ export declare class ProviderRouter {
     getBlock(number: number): Promise<any>;
     getTransaction(txHash: string): Promise<any>;
     getTransactionReceipt(txHash: string): Promise<any>;
+    getErc20Balance(contract: string, address: string): Promise<any>;
 }
 export {};

@@ -32,5 +32,10 @@ class WebThree {
             return this.web3.eth.getTransactionReceipt(txHash);
         });
     }
+    getErc20Balance(contract, address) {
+        return __awaiter(this, void 0, void 0, function* () {
+            throw new Error('getErc20Balance is not supported with Web3');
+        });
+    }
 }
 exports.WebThree = WebThree;

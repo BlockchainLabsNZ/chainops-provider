@@ -23,4 +23,8 @@ export class WebThree implements IProvider {
   async getTransactionReceipt(txHash: string) {
     return this.web3.eth.getTransactionReceipt(txHash)
   }
+
+  async getErc20Balance(contract: string, address: string): Promise<number> {
+    throw new Error('getErc20Balance is not supported with Web3')
+  }
 }

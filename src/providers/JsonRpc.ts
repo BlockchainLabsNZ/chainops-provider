@@ -38,6 +38,10 @@ export class JsonRpc implements IProvider {
     return result
   }
 
+  async getErc20Balance(contract: string, address: string): Promise<number> {
+    throw new Error('getErc20Balance is not supported with JsonRpc')
+  }
+
   async getTransaction(txHash: string) {
     if (!this.client) throw new Error("Client has not yet be init'd")
     const result: any = await this.client.eth_getTransaction(txHash)

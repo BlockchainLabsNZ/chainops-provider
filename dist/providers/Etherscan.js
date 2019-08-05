@@ -79,5 +79,19 @@ class Etherscan {
             return response;
         });
     }
+    getErc20Balance(contract, address) {
+        return __awaiter(this, void 0, void 0, function* () {
+            //?module=account&action=tokenbalance&contractaddress=0x57d90b64a1a57749b0f932f1a3395792e12e7055&address=0xe04f27eb70e025b78871a2ad7eabe85e61212761&tag=latest&apikey=YourApiKeyToken
+            const response = yield this.makeRequest({
+                module: 'account',
+                action: 'tokenbalance',
+                contractaddress: contract,
+                address: address,
+                tag: 'latest',
+                apiKey: this.key
+            }, null);
+            return response.data.result;
+        });
+    }
 }
 exports.Etherscan = Etherscan;

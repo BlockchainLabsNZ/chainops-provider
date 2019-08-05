@@ -26,6 +26,11 @@ class Cloudflare {
             return web3_utils_1.toBN(response.data.result).toNumber();
         });
     }
+    getErc20Balance(contract, address) {
+        return __awaiter(this, void 0, void 0, function* () {
+            throw new Error('getErc20Balance is not supported with Cloudflare');
+        });
+    }
     getBlock(block) {
         return __awaiter(this, void 0, void 0, function* () {
             const response = yield this.makeRequest({

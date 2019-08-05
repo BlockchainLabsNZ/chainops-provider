@@ -6,4 +6,5 @@ export interface IProvider {
   getBlock: (blockNumber: number) => Promise<Block>
   getTransaction: (txHash: string) => Promise<Transaction>
   getTransactionReceipt: (txHash: string) => Promise<TransactionReceipt>
+  getErc20Balance: (contract: string, address: string) => Promise<number>
 }
