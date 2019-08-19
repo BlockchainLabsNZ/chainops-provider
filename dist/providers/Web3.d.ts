@@ -7,5 +7,5 @@ export declare class WebThree implements IProvider {
     getBlock(blockNumber: number): Promise<import("web3-eth").Block>;
     getTransaction(txHash: string): Promise<import("web3-core").Transaction>;
     getTransactionReceipt(txHash: string): Promise<import("web3-core").TransactionReceipt>;
-    getErc20Balance(contract: string, address: string): Promise<number>;
+    getErc20Balance(contractAddress: string, holdingAddress: string): Promise<number>;
 }

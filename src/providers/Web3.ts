@@ -24,7 +24,33 @@ export class WebThree implements IProvider {
     return this.web3.eth.getTransactionReceipt(txHash)
   }
 
-  async getErc20Balance(contract: string, address: string): Promise<number> {
-    throw new Error('getErc20Balance is not supported with Web3')
+  async getErc20Balance(
+    contractAddress: string,
+    holdingAddress: string
+  ): Promise<number> {
+    // The minimum ABI to get ERC20 Token balance
+    const minABI = [
+      // balanceOf
+      {
+        constant: true,
+        inputs: [{ name: '_owner', type: 'address' }],
+        name: 'balanceOf',
+        outputs: [{ name: 'balance', type: 'uint256' }],
+        type: 'function'
+      },
+      // decimals
+      {
+        constant: true,
+        inputs: [],
+        name: 'decimals',
+        outputs: [{ name: '', type: 'uint8' }],
+        type: 'function'
+      }
+    ]
+
+    //@ts-ignore
+    const contract = new this.web3.eth.Contract(minABI, contractAddress)
+    const balanceOf = await contract.methods['balanceOf'](holdingAddress)
+    return balanceOf.call()
   }
 }
