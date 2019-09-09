@@ -10,8 +10,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const request_1 = require("../request");
 const web3_utils_1 = require("web3-utils");
+const lodash_1 = require("lodash");
+const DefaultOptions = {
+    throttle: 0
+};
 class Cloudflare {
-    constructor() {
+    constructor(options = DefaultOptions) {
+        this.options = options;
         this.base = 'https://cloudflare-eth.com';
         this.nextRequestId = 0;
     }
@@ -73,7 +78,9 @@ class Cloudflare {
                 'Content-Type': 'application/json'
             };
             const path = `${this.base}`;
-            const response = yield request_1.request({
+            const wait = this.options.throttle ? 1000 / this.options.throttle : 0;
+            let requestMethod = lodash_1.throttle(request_1.request, wait);
+            const response = yield requestMethod({
                 method,
                 headers,
                 data,

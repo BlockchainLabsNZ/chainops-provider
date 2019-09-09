@@ -1,12 +1,24 @@
 import { IProvider } from './IProvider'
 import { request } from '../request'
 import { toBN, toHex } from 'web3-utils'
+import { throttle } from 'lodash'
+
+export interface ICloudflareOptions {
+  // max number of calls per second
+  throttle: number
+}
+
+const DefaultOptions: ICloudflareOptions = {
+  throttle: 0
+}
 
 export class Cloudflare implements IProvider {
   base: string
   nextRequestId: number
+  options: ICloudflareOptions
 
-  constructor() {
+  constructor(options: ICloudflareOptions = DefaultOptions) {
+    this.options = options
     this.base = 'https://cloudflare-eth.com'
     this.nextRequestId = 0
   }
@@ -69,7 +81,10 @@ export class Cloudflare implements IProvider {
 
     const path = `${this.base}`
 
-    const response = await request({
+    const wait = this.options.throttle ? 1000 / this.options.throttle : 0
+    let requestMethod = throttle(request, wait)
+
+    const response = await requestMethod({
       method,
       headers,
       data,
