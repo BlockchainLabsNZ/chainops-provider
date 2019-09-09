@@ -19,6 +19,8 @@ class Cloudflare {
         this.options = options;
         this.base = 'https://cloudflare-eth.com';
         this.nextRequestId = 0;
+        const wait = this.options.throttle ? 1000 / this.options.throttle : 0;
+        this.makeRequest = lodash_1.throttle(this._makeRequest, wait).bind(this);
     }
     getBlockNumber() {
         return __awaiter(this, void 0, void 0, function* () {
@@ -71,16 +73,14 @@ class Cloudflare {
             return response.data.result;
         });
     }
-    makeRequest(data) {
+    _makeRequest(data) {
         return __awaiter(this, void 0, void 0, function* () {
             const method = 'POST';
             const headers = {
                 'Content-Type': 'application/json'
             };
             const path = `${this.base}`;
-            const wait = this.options.throttle ? 1000 / this.options.throttle : 0;
-            let requestMethod = lodash_1.throttle(request_1.request, wait);
-            const response = yield requestMethod({
+            const response = yield request_1.request({
                 method,
                 headers,
                 data,

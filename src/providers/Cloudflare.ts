@@ -16,11 +16,15 @@ export class Cloudflare implements IProvider {
   base: string
   nextRequestId: number
   options: ICloudflareOptions
+  makeRequest: (options: any) => Promise<any>
 
   constructor(options: ICloudflareOptions = DefaultOptions) {
     this.options = options
     this.base = 'https://cloudflare-eth.com'
     this.nextRequestId = 0
+
+    const wait = this.options.throttle ? 1000 / this.options.throttle : 0
+    this.makeRequest = throttle(this._makeRequest, wait).bind(this)
   }
 
   async getBlockNumber() {
@@ -73,7 +77,7 @@ export class Cloudflare implements IProvider {
     return response.data.result
   }
 
-  async makeRequest(data: any) {
+  async _makeRequest(data: any) {
     const method = 'POST'
     const headers = {
       'Content-Type': 'application/json'
@@ -81,10 +85,7 @@ export class Cloudflare implements IProvider {
 
     const path = `${this.base}`
 
-    const wait = this.options.throttle ? 1000 / this.options.throttle : 0
-    let requestMethod = throttle(request, wait)
-
-    const response = await requestMethod({
+    const response = await request({
       method,
       headers,
       data,
