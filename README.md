@@ -58,3 +58,27 @@ Unless a custom API endpoint is used (like Cloudflare or Etherscan) there should
 
 Each method must be implemented in this module before being called.
 Each provider must then support passing through that method to their respective sources.
+
+## Stats
+
+ProviderRouter has a prop called `stats` you can just print this to console.
+Here's an example:
+
+```js
+{ 
+  cloudflare: { 
+    getBlockNumber: { '0': 1 },
+    getBlock: { '0': 4 },
+    getTransaction: { '0': 358 } },
+  chainops: { 
+    getTransaction: { '1': 12 }, 
+    getBlock: { '1': 4 } 
+  } 
+}
+```
+
+This prints the provider 'cloudflare', the method 'getBlockNumber' and the number of calls expressed as an object.
+This keys in this 'calls' object has the index number as the key and the number of calls as the value.
+For example, {'0': 358} shows that it was called 358 times as the first provider
+{'1': 12} means it was called 12 times as the second provider (fallback)
+
