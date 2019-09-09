@@ -36,6 +36,11 @@ export async function request({
     data
   }
 
-  const response = await axios.request(request)
-  return response
+  try {
+    const response = await axios.request(request)
+    return response
+  } catch (err) {
+    console.error('Axios request error', err)
+    throw err
+  }
 }

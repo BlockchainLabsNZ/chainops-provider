@@ -7,28 +7,28 @@ const {
 } = require('../dist/index')
 
 async function main() {
-  // const Web3 = require('web3')
-  // const web3 = new Web3(
+  const Web3 = require('web3')
+  const web3 = new Web3(
+    'ws://dev-parity-full-node-nlb-672bd9aa3a7b1e74.elb.ap-southeast-2.amazonaws.com:8546'
+  )
+
+  // const jsonrpc = new JsonRpc(
   //   'wss://mainnet.infura.io/ws/v3/4fe6f23c0b4d468ebf02a2d3142b0e10'
   // )
 
-  const jsonrpc = new JsonRpc(
-    'wss://mainnet.infura.io/ws/v3/4fe6f23c0b4d468ebf02a2d3142b0e10'
-  )
+  // await jsonrpc.init()
 
-  await jsonrpc.init()
-
-  // const infura = new WebThree(web3)
+  const chainops = new WebThree(web3)
   // const etherscan = new Etherscan('YourApiKeyToken')
-  // const cloudflare = new Cloudflare()
+  const cloudflare = new Cloudflare()
 
   const config = {
     routing: {
       //[method call]: [provider keys in order]
-      getBlockNumber: ['jsonrpc'],
-      getBlock: ['jsonrpc'],
-      getTransaction: ['jsonrpc'],
-      getTransactionReceipt: ['jsonrpc']
+      getBlockNumber: ['chainops'],
+      getBlock: ['chainops'],
+      getTransaction: ['chainops'],
+      getTransactionReceipt: ['chainops']
       // getBlockNumber: ['jsonrpc', 'cloudflare', 'etherscan', 'infura'],
       // getBlock: ['jsonrpc', 'cloudflare', 'etherscan', 'infura'],
       // getTransaction: ['jsonrpc', 'cloudflare', 'etherscan', 'infura'],
@@ -37,8 +37,8 @@ async function main() {
     providers: {
       // infura: infura,
       // etherscan: etherscan,
-      // cloudflare: cloudflare,
-      jsonrpc: jsonrpc
+      chainops: chainops
+      // jsonrpc: jsonrpc
     }
   }
 

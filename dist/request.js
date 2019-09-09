@@ -20,8 +20,14 @@ function request({ method, headers, path, data }) {
             url: path,
             data
         };
-        const response = yield axios_1.default.request(request);
-        return response;
+        try {
+            const response = yield axios_1.default.request(request);
+            return response;
+        }
+        catch (err) {
+            console.error('Axios request error', err);
+            throw err;
+        }
     });
 }
 exports.request = request;
