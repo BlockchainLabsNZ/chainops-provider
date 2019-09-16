@@ -70,6 +70,8 @@ class Cloudflare {
                 params: [txHash],
                 id: this.nextRequestId++
             });
+            if (response.data.result === null)
+                throw new Error('Cloudflare getTransactionReceipt: ' + txHash + ' - null');
             return response.data.result;
         });
     }

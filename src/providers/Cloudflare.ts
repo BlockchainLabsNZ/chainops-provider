@@ -74,6 +74,9 @@ export class Cloudflare implements IProvider {
       id: this.nextRequestId++
     })
 
+    if (response.data.result === null)
+      throw new Error('Cloudflare getTransactionReceipt: ' + txHash + ' - null')
+
     return response.data.result
   }
 
