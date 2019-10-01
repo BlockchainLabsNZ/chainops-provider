@@ -17,9 +17,9 @@ class WebThree {
             return this.web3.eth.getBlockNumber();
         });
     }
-    getBlock(blockNumber) {
+    getBlock(blockNumber, returnTransactionObjects = false) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.web3.eth.getBlock(blockNumber);
+            return this.web3.eth.getBlock(blockNumber, returnTransactionObjects);
         });
     }
     getTransaction(txHash) {

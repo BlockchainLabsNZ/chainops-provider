@@ -29,12 +29,13 @@ class Etherscan {
             return web3_utils_1.toBN(response.data.result).toNumber();
         });
     }
-    getBlock(number) {
+    getBlock(number, includeTransactionObject = false) {
         return __awaiter(this, void 0, void 0, function* () {
             const response = yield this.makeRequest({
                 module: 'proxy',
                 action: 'eth_getBlockByNumber',
                 tag: web3_utils_1.toHex(number),
+                boolean: includeTransactionObject,
                 apiKey: this.key
             }, null);
             if (!response.data.result)

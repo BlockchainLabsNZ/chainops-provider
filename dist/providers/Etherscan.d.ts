@@ -4,7 +4,7 @@ export declare class Etherscan implements IProvider {
     base: string;
     constructor(key: string);
     getBlockNumber(): Promise<number>;
-    getBlock(number: number): Promise<any>;
+    getBlock(number: number, includeTransactionObject?: boolean): Promise<any>;
     getTransaction(txHash: string): Promise<any>;
     getTransactionReceipt(txHash: string): Promise<any>;
     makeRequest(qsParameters: Object, data: any): Promise<import("axios").AxiosResponse<any>>;

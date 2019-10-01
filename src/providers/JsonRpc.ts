@@ -30,11 +30,16 @@ export class JsonRpc implements IProvider {
     return result
   }
 
-  async getBlock(blockNumber: number) {
+  async getBlock(
+    blockNumber: number,
+    includeTransactionObject: boolean = false
+  ) {
     if (!this.client) throw new Error("Client has not yet be init'd")
-    const result = <Block>(
-      (<unknown>await this.client.eth_getBlockByNumber(blockNumber, true))
-    )
+    const result = <Block>(<unknown>await this.client.eth_getBlockByNumber(
+      blockNumber,
+      //@ts-ignore
+      includeTransactionObject
+    ))
     return result
   }
 

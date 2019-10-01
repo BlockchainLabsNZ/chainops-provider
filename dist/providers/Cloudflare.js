@@ -38,12 +38,12 @@ class Cloudflare {
             throw new Error('getErc20Balance is not supported with Cloudflare');
         });
     }
-    getBlock(block) {
+    getBlock(block, includeTransactionObjects = false) {
         return __awaiter(this, void 0, void 0, function* () {
             const response = yield this.makeRequest({
                 jsonrpc: '2.0',
                 method: 'eth_getBlockByNumber',
-                params: [web3_utils_1.toHex(block), true],
+                params: [web3_utils_1.toHex(block), includeTransactionObjects],
                 id: this.nextRequestId++
             });
             if (!response.data.result)

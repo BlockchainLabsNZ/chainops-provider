@@ -25,12 +25,13 @@ export class Etherscan implements IProvider {
     return toBN(response.data.result).toNumber()
   }
 
-  async getBlock(number: number) {
+  async getBlock(number: number, includeTransactionObject: boolean = false) {
     const response = await this.makeRequest(
       {
         module: 'proxy',
         action: 'eth_getBlockByNumber',
         tag: toHex(number),
+        boolean: includeTransactionObject,
         apiKey: this.key
       },
       null

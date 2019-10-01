@@ -35,11 +35,13 @@ class JsonRpc {
             return result;
         });
     }
-    getBlock(blockNumber) {
+    getBlock(blockNumber, includeTransactionObject = false) {
         return __awaiter(this, void 0, void 0, function* () {
             if (!this.client)
                 throw new Error("Client has not yet be init'd");
-            const result = (yield this.client.eth_getBlockByNumber(blockNumber, true));
+            const result = yield this.client.eth_getBlockByNumber(blockNumber, 
+            //@ts-ignore
+            includeTransactionObject);
             return result;
         });
     }

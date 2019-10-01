@@ -12,8 +12,11 @@ export class WebThree implements IProvider {
     return this.web3.eth.getBlockNumber()
   }
 
-  async getBlock(blockNumber: number) {
-    return this.web3.eth.getBlock(blockNumber)
+  async getBlock(
+    blockNumber: number,
+    returnTransactionObjects: boolean = false
+  ) {
+    return this.web3.eth.getBlock(blockNumber, returnTransactionObjects)
   }
 
   async getTransaction(txHash: string) {
