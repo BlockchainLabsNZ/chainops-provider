@@ -21,7 +21,7 @@ export declare class ProviderRouter {
     incrementStats(provider: string, method: string, priority: number): void;
     runMethod(methodName: SupportedMethods, ...args: any): Promise<any>;
     getBlockNumber(): Promise<any>;
-    getBlock(number: number): Promise<any>;
+    getBlock(number: number, includeTransactions?: boolean): Promise<any>;
     getTransaction(txHash: string): Promise<any>;
     getTransactionReceipt(txHash: string): Promise<any>;
     getErc20Balance(contract: string, address: string): Promise<any>;

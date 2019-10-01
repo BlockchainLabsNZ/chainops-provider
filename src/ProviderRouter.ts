@@ -66,8 +66,8 @@ export class ProviderRouter {
     return this.runMethod('getBlockNumber')
   }
 
-  async getBlock(number: number) {
-    return this.runMethod('getBlock', number)
+  async getBlock(number: number, includeTransactions: boolean = false) {
+    return this.runMethod('getBlock', number, includeTransactions)
   }
 
   async getTransaction(txHash: string) {

@@ -50,9 +50,9 @@ class ProviderRouter {
             return this.runMethod('getBlockNumber');
         });
     }
-    getBlock(number) {
+    getBlock(number, includeTransactions = false) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.runMethod('getBlock', number);
+            return this.runMethod('getBlock', number, includeTransactions);
         });
     }
     getTransaction(txHash) {
