@@ -31,3 +31,8 @@ Where `utils.makeConnectionHandler(milliseconds, retryLimit)` is a closure funct
 --
 
 Web3 provider class `src/providers/Web3` still has the `isWeb3Ready` call and the `waitForWeb3Connection` methods if required.
+
+## Example
+
+Run `test/web3_connection_error.js`
+Toggle the two `infura.attachConnectionErrorHandler` lines to see the handler in action.
