@@ -1,4 +1,11 @@
 "use strict";
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result["default"] = mod;
+    return result;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const ProviderRouter_1 = require("./ProviderRouter");
 exports.ProviderRouter = ProviderRouter_1.ProviderRouter;
@@ -10,3 +17,5 @@ const Cloudflare_1 = require("./providers/Cloudflare");
 exports.Cloudflare = Cloudflare_1.Cloudflare;
 const JsonRpc_1 = require("./providers/JsonRpc");
 exports.JsonRpc = JsonRpc_1.JsonRpc;
+const utils = __importStar(require("./utils"));
+exports.utils = utils;
