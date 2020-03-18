@@ -1,5 +1,6 @@
 import Web3 from 'web3'
 import { IProvider } from './IProvider'
+import BigNumber from 'bignumber.js'
 
 type Web3Call<T> = () => Promise<T>
 type Web3ConnectionErrorHandler = <T>(err: Error, call: Web3Call<T>) => any
@@ -56,15 +57,15 @@ export class WebThree implements IProvider {
   }
 
   /**
-   * Retrieves token addres balance from contract storage
-   * @param contractAddress token contract addres
+   * Retrieves token address balance from contract storage
+   * @param contractAddress token contract address
    * @param holdingAddress address that owns the tokens
-   * @returns uint256 balance
+   * @returns BigNumber uint256 balance
    */
   async getErc20Balance(
     contractAddress: string,
     holdingAddress: string
-  ): Promise<number> {
+  ): Promise<BigNumber> {
     // The minimum ABI to get ERC20 Token balance
     const minABI = [
       // balanceOf
@@ -89,7 +90,7 @@ export class WebThree implements IProvider {
       //@ts-ignore
       const contract = new this.web3.eth.Contract(minABI, contractAddress)
       const balanceOf = await contract.methods['balanceOf'](holdingAddress)
-      return balanceOf.call()
+      return <BigNumber>balanceOf.call()
     })
   }
 
@@ -142,7 +143,7 @@ export class WebThree implements IProvider {
    * Otherwise it will rethrow
    * @param call Web3 call in arrow function expression
    * This allows us to retain the typings with Generic Types <T> 
-   * Example usage:
+   * @example
         this._wrapWeb3Call(() => this.web3.eth.getTransaction(txHash))
    */
   async _wrapWeb3Call<T>(call: Web3Call<T>): Promise<T> {

@@ -1,7 +1,7 @@
 const {
   ProviderRouter,
   WebThree,
-  utils,
+  utils
 } = require('../dist/index')
 
 async function main() {
@@ -18,10 +18,11 @@ async function main() {
       getBlockNumber: ['infura'],
       getBlock: ['infura'],
       getTransaction: ['infura'],
-      getTransactionReceipt: ['infura']
+      getTransactionReceipt: ['infura'],
+      getErc20Balance: ['infura']
     },
     providers: {
-      infura: infura,
+      infura: infura
     }
   }
 
@@ -40,7 +41,11 @@ async function main() {
     const tx = await router.getTransaction(
       '0x423482682132fcbeb302489de19009d442b633a895632efc7a4a64226a67213d'
     )
-    console.log(tx)
+    // const tx = await router.getTransaction(
+    //   '0x423482682132fcbeb302489de19009d442b633a895632efc7a4a64226a67213d'
+    // )
+    // console.log(tx)
+    console.log(bal)
   } catch (err) {
     console.error('error', err.message)
     process.exit(1)
