@@ -35,6 +35,7 @@ async function main() {
   // infura.attachConnectionErrorHandler(utils.makeConnectionHandler(3000, 3))
 
   try {
+    // Disconnect from Infura, to force the subsequent `getTransaction()` call to attempt to reconnect.
     await infura.disconnect()
     const tx = await router.getTransaction(
       '0x423482682132fcbeb302489de19009d442b633a895632efc7a4a64226a67213d'
@@ -42,6 +43,7 @@ async function main() {
     console.log(tx)
   } catch (err) {
     console.error('error', err.message)
+    process.exit(1)
   }
 
   process.exit(0)

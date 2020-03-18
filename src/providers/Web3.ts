@@ -57,7 +57,7 @@ export class WebThree implements IProvider {
 
   /**
    * Retrieves token addres balance from contract storage
-   * @param contractAddress  token contract addres
+   * @param contractAddress token contract addres
    * @param holdingAddress address that owns the tokens
    * @returns uint256 balance
    */
@@ -165,9 +165,9 @@ export class WebThree implements IProvider {
 
   /**
    * Adds an error handler which will be invoked if
-   * Web3 calls throw with 'Connection Error'
+   * Web3 calls throw with 'Connection error'
    * By default will be undefined
-   * Can be explicitly set it back to undefined if required
+   * Can be explicitly set back to undefined if required
    * @param handler Web3ConnectionErrorHandler | undefined
    */
   attachConnectionErrorHandler(
