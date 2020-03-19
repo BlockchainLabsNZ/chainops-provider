@@ -1,5 +1,6 @@
 import { Block } from 'web3-eth'
 import { TransactionReceipt, Transaction } from 'web3-core'
+import { BigNumber } from 'bignumber.js'
 
 export interface IProvider {
   getBlockNumber: () => Promise<number>
@@ -9,5 +10,5 @@ export interface IProvider {
   ) => Promise<Block>
   getTransaction: (txHash: string) => Promise<Transaction>
   getTransactionReceipt: (txHash: string) => Promise<TransactionReceipt>
-  getErc20Balance: (contract: string, address: string) => Promise<number>
+  getErc20Balance: (contract: string, address: string) => Promise<BigNumber>
 }
